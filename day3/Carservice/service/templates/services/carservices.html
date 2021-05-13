@@ -1,0 +1,31 @@
+{% extends 'services/base.html' %}
+{% block title %}servicesdata{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row mt-3">
+		<div class="col-md-2"></div>
+			<table class="table table-striped table-hover bg-warning">
+				<tr class="bg-dark text-light">
+				<th>S.no</th>
+				<th>service_type</th>
+				<th>price</th>
+				<th>sid</th>
+				<th>BUY</th>
+			</tr>
+			{% for i in da %}
+			<tr>
+				<td>{{forloop.counter}}</td>
+				<td>{{i.service_type}}</td>
+				<td>{{i.price}}</td>
+				<td>{{i.sid}}</td>
+				<!-- <td><form>
+					<button type="submit" class="btn btn-success">Add Cart</button>
+					<button type="submit" class="btn btn-info">Buy</button>
+				</form> -->
+				<td><a href="{% url 'booking' %}">Buy Online</a><a href="{% url 'addcart' i.id %}">Add Cart</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+{% endblock %}

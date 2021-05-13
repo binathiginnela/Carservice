@@ -1,0 +1,20 @@
+{% extends 'services/base.html' %}
+{% block title %}Add category{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="card col-md-6 mt-4 mx-auto shadow-lg">
+		<h3 class="text-white text-center p-3 mt-3" style="background-color:green">Add category</h3>
+		<form method="POST">
+			{% csrf_token %}
+			<table class="table table-borderless">
+				{% for k in c %}
+				<tr>
+					<td>{{k}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<input type="submit" name="submit" class="btn btn-success btn-block">
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'services/base.html' %}
+{% block title %}Details{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row mt-5 mx-2">
+		<div class="card col-md-4 mx-2">
+			<h4 class="text-danger">Profile Image</h4>
+			<div class="card-body">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhtRADYtUkcgKmkZ4QokuR_5tv5RNAMxj4_42T2sIFNn3VhNVJniLo2sa4mD-YGq1ojnY&usqp=CAU" height="200px" width="200px">
+			</div>
+		</div>
+		<div class="card col-md-7">
+			<h4>User_details</h4>
+			<div class="">
+			<h2><label class="text-warning" >UserName : {{us}} </label></h2>
+			<h2><label class="text-danger">Age: {{age}}</label></h2>
+			<h2><label class="text-danger">Email: {{em}}</label></h2>	
+			</div>
+	base
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% load static %}
+ <a class="navbar-brand" href="#">
+    <h1 class="text-warning">ONLINE CAR SERVICE CENTER</h1>
+  </a>
+<nav class="navbar navbar-expand-sm bg-white navbar-white">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ab' %}">About us</a>
+        <li class="dropdown">
+          <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Privacy Policy</a>
+            <a class="dropdown-item" href="#">Terms&Conditions</a>
+          </div>
+        </li>
+      </li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cn' %}">Contact us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Services</a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'lg' %}">Book a Service</a>
+        </li>
+        {% elif user.role == 1 %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'addcategory' %}">Addcartegory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'addcarservices' %}">Addcarservices</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ser' %}">add service</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'show' %}">edit/delete services</a>
+      </li>
+
+       {% elif user.role == 2 %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ab' %}">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cn' %}">Contact us</a>
+      </li>
+      <li class="dropdown">
+        <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">select category
+        </a>
+        <ul class="navbar-nav">
+          <div class="dropdown-menu">
+            {% for i in u %}
+            <li>
+              <a href="{% url 'ca' i.id %}" class="dropdown-item">{{i.cname}}</a>
+            </li>
+            {% endfor %}
+          </div>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'booking' %}">Book a Service</a>
+      </li>
+
+      {% elif user.is_superuser %}
+      <li class="nav-item" style='display:inline'>
+        <a class="nav-link" href="{% url 'viewuser' %}">View users</a>
+      </li>
+      <li class="nav-item" style='display:inline'>
+        <a class="nav-link" href="{% url 'viewuser' %}">view appointment dates</a>
+      </li>
+      {% else %}
+      <li class="nav-item" style="margin-right: 80px">
+        <a class="nav-link" href="#">Guest</a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="navbar-nav ml-auto" style="margin-right:120px">
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'lg' %}">Login</a>
+    </li>
+    {% else %}
+    <ul class="navbar-nav ml-auto" style="margin-right:50px">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cartdetails' %}">{{count}}<i class="fas fa-cart-plus"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Myorders</a>
+      </li>
+      
+    </ul>
+        <li class="dropdown">
+  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
+    {{user.username}}
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'cg' %}">change password</a>
+    <a class="dropdown-item" href="{% url 'pro' %}">profile</a>
+    <a class="dropdown-item" href="{% url 'lgo' %}">logout</a>
+  </div>
+</li>
+{% endif %}
+
+  </div>
+</nav>
+
+
+
+  

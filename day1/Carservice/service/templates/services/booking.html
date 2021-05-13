@@ -1,0 +1,48 @@
+{% extends 'services/base.html' %}
+{% block title %}Book a Service{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="card col-md-8 mx-auto mt-5 shadow-lg" style="background-color:grey">
+			<h2 class="text-white text-center p-2 bg-success mt-2">Book a Service</h2>
+		<form method="post">
+			{% csrf_token %}
+			<!-- <input type="text" name="make" class="form-control my-2" placeholder="make"> -->
+			<label>make:
+			<select>
+				<option value="audi" class="form-control my-2">select</option>
+				<option value="suziki">suziki</option>
+				<option value="weka">weka</option>
+				<option value="BMW">BMW</option>
+				<option value="scoda">scoda</option>
+				<option value="jeep">jeep</option>
+				<option value="i20">i20</option>
+			</select>
+			</label><br><br>
+			<label>model:
+			<select>
+			<option value="audi" class="form-control my-2">select</option>
+				<option value="100">100</option>
+				<option value="2019">2019</option>
+				<option value="A1">A1</option>
+				<option value="A2">A2</option>
+				<option value="B1">B1</option>
+				<option value="101">101</option>
+			</select>
+			</label><br><br>
+			<label>services:
+			<select>
+				<option value="audi" class="form-control my-2">select</option>
+				<option value="engine oil">engine oil</option>
+				<option value="full services">full service</option>
+				<option value="wheel care">wheel care</option>
+				<option value="body repair">body repair</option>
+				<option value="wash">wash</option>
+				<option value="running repair">running repair</option>
+			</select>
+			</label><br><br>
+			<input type="date" name="ag" placeholder="Appointment date">
+			<input type="submit" value="Book Online" class="form-control my-3 btn btn-success btn-block">
+		</form>
+	</div>
+</div>
+{% endblock %}

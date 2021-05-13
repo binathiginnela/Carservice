@@ -1,0 +1,57 @@
+{% extends 'services/base.html' %}
+{% block title %}viewuser{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row mt-3">
+		<div class="col-md-2"></div>
+		<div class="col-md-10 card">
+			{% if user.is_superuser %}
+			<table class="table table-striped table-hover">
+				<tr class="bg-dark text-light">
+					<th>S.no</th>
+					<th>Username</th>
+					<th>Email</th>
+					<th>role</th>
+				</tr>
+				{% for i in u %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{i.username}}</td>
+					<td>{{i.email}}</td>
+					{% if i.role is 1 %}
+					<td>owner</td>
+					{% elif i.role is 2 %}
+					<td>customer</td>
+					{% else %}
+					<td>anonymous</td>
+					{% endif %}
+					<td><a href="{% url 'customer' i.id %}" class="btn btn-info">Customer</a><a href="{% url 'owner' i.id %}" class="btn btn-danger">Owner</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% else %}
+			<div class="row mt-3">
+				<div class="col-md-2"></div>
+					<table class="table table-striped table-hover bg-warning">
+						<tr class="bg-dark text-light">
+							<th>S.no</th>
+							<th>Username</th>
+							<th>Email</th>
+							<th>Lastname</th>
+						</tr>
+						{% for i in u %}
+						<tr>
+							<td>{{forloop.counter}}</td>
+							<td>{{i.username}}</td>
+							<td>{{i.email}}</td>
+							<td>{{i.last_name}}</td>
+						</tr>
+						{% endfor %}
+					</table>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
